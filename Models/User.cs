@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Crowdfunding.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Crowdfunding.Models
 {
-    public class User
+    public class User : IdentityUser<Guid>
     {
-        [Key]
-        public Guid UserID { get; set; } = Guid.NewGuid();
+        //[Key]
+        //public Guid UserID { get; set; } = Guid.NewGuid();
 
-        [Required]
-        [MaxLength(50)]
-        public string Username { get; set; }
+        //[Required]
+        //[MaxLength(50)]
+        //public string Username { get; set; }
 
-        [Required]
-        [EmailAddress]
-        [MaxLength(100)]
-        public string Email { get; set; }
+        //[Required]
+        //[EmailAddress]
+        //[MaxLength(100)]
+        //public string Email { get; set; }
 
-        [Required]
-        public string PasswordHash { get; set; }
+        //[Required]
+        //public string PasswordHash { get; set; }
 
         [Required]
         [MaxLength(20)]

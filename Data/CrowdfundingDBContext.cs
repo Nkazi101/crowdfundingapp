@@ -1,19 +1,25 @@
 ﻿using Crowdfunding.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Crowdfunding.Data
 {
-    public class CrowdFundingDBContext : DbContext
+    public class CrowdFundingDBContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         // DbSet properties represent tables in the database for each model class
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; } already includes this DBSet
         public DbSet<Project> Projects { get; set; }
         public DbSet<Reward> Rewards { get; set; }
         public DbSet<Pledge> Pledges { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Message> Messages { get; set; }
 
-        // Constructor and options configuration omitted for brevity
+        public CrowdFundingDBContext(DbContextOptions<CrowdFundingDBContext> options)
+            : base(options)
+        {
+        }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,7 +39,7 @@ namespace Crowdfunding.Data
             // Configure a unique index on the Username property of the User entity.
             // This ensures that each username is unique across all users.
             modelBuilder.Entity<User>()
-                .HasIndex(u => u.Username)    // Specify the property to index (User.Username)
+                .HasIndex(u => u.UserName)    // Specify the property to index (User.Username)
                 .IsUnique();                  // Enforce uniqueness on the Username property
 
             // ---------------------
@@ -66,14 +72,16 @@ namespace Crowdfunding.Data
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Pledges)        // Navigation property in User (User.Pledges)
                 .WithOne(pl => pl.Backer)       // Navigation property in Pledge (Pledge.Backer)
-                .HasForeignKey(pl => pl.BackerID); // Foreign key in Pledge pointing to User
+                .HasForeignKey(pl => pl.BackerID) // Foreign key in Pledge pointing to User
+                .OnDelete(DeleteBehavior.Restrict);
 
             // Define the one-to-many relationship between Reward and Pledge.
             // A Reward can be associated with many Pledges, but a Pledge has one Reward.
             modelBuilder.Entity<Reward>()
                 .HasMany(r => r.Pledges)        // Navigation property in Reward (Reward.Pledges)
                 .WithOne(pl => pl.Reward)       // Navigation property in Pledge (Pledge.Reward)
-                .HasForeignKey(pl => pl.RewardID); // Foreign key in Pledge pointing to Reward
+                .HasForeignKey(pl => pl.RewardID) // Foreign key in Pledge pointing to Reward
+                .OnDelete(DeleteBehavior.Restrict);
 
             // ---------------------
             // One-to-One Relationship

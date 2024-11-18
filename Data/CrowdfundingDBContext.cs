@@ -26,6 +26,58 @@ namespace Crowdfunding.Data
             // Call the base class implementation
             base.OnModelCreating(modelBuilder);
 
+
+            // Change Identity table names
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.ToTable(name: "Users");
+
+                // Configure properties specific to User
+                entity.Property(e => e.Bio)
+                    .HasMaxLength(500)
+                    .IsRequired(false); // Makes the Bio property optional
+
+                entity.Property(e => e.ProfilePictureUrl)
+                    .HasMaxLength(500)
+                    .IsRequired(false);
+
+                entity.Property(u => u.Role)
+                    .HasConversion<string>()
+                    .HasMaxLength(20);
+            });
+
+            modelBuilder.Entity<IdentityRole<Guid>>(entity =>
+            {
+                entity.ToTable(name: "Roles");
+            });
+
+            modelBuilder.Entity<IdentityUserRole<Guid>>(entity =>
+            {
+                entity.ToTable("UserRoles");
+            });
+
+            modelBuilder.Entity<IdentityUserClaim<Guid>>(entity =>
+            {
+                entity.ToTable("UserClaims");
+            });
+
+            modelBuilder.Entity<IdentityUserLogin<Guid>>(entity =>
+            {
+                entity.ToTable("UserLogins");
+            });
+
+            modelBuilder.Entity<IdentityRoleClaim<Guid>>(entity =>
+            {
+                entity.ToTable("RoleClaims");
+            });
+
+            modelBuilder.Entity<IdentityUserToken<Guid>>(entity =>
+            {
+                entity.ToTable("UserTokens");
+            });
+
+
+
             // ---------------------
             // Unique Constraints
             // ---------------------
@@ -120,8 +172,14 @@ namespace Crowdfunding.Data
 
             // Add a check constraint on the Pledge entity to ensure PledgeAmount is greater than 0.
             // This enforces data integrity at the database level.
-            modelBuilder.Entity<Pledge>()
-                .HasCheckConstraint("CK_Pledge_PledgeAmount", "[PledgeAmount] > 0"); // SQL check constraint
+            modelBuilder.Entity<Pledge>(entity =>
+            {
+                entity.ToTable(t =>
+                {
+                    t.HasCheckConstraint("CK_Pledge_PledgeAmount", "[PledgeAmount] > 0");
+                });
+            });
+            // SQL check constraint
 
             // Note: Default values and additional configurations can be set here if needed.
         }

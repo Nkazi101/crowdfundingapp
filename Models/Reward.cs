@@ -18,9 +18,9 @@ namespace Crowdfunding.Models
 
         [Required]
         [MaxLength(100)]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
@@ -34,6 +34,6 @@ namespace Crowdfunding.Models
 
         public bool IsLimited { get; set; } = false;
 
-        public ICollection<Pledge> Pledges { get; set; }
+        public ICollection<Pledge> Pledges { get; set; }  = new List<Pledge>();
     }
 }

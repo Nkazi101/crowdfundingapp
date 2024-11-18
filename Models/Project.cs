@@ -19,14 +19,14 @@ namespace Crowdfunding.Models
 
         [Required]
         [MaxLength(150)]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [Required]
-        public string Description { get; set; }
+        public string Description { get; set; } = string.Empty;
 
         [Required]
         [MaxLength(50)]
-        public string Category { get; set; } // E.g., Technology, Art
+        public string Category { get; set; } = string.Empty; // E.g., Technology, Art
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
@@ -43,15 +43,15 @@ namespace Crowdfunding.Models
         [MaxLength(20)]
         public string Status { get; set; } = "Pending Approval"; // Possible values: "Pending Approval", "Active", "Completed", "Cancelled"
 
-        public string MediaUrls { get; set; } // Can be a JSON array or a delimited string
+        public string MediaUrls { get; set; } = string.Empty;// Can be a JSON array or a delimited string
 
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
         public DateTime LastUpdated { get; set; } = DateTime.UtcNow;
 
         // Navigation properties
-        public ICollection<Reward> Rewards { get; set; }
+        public ICollection<Reward> Rewards { get; set; } = new List<Reward>();
 
-        public ICollection<Pledge> Pledges { get; set; }
+        public ICollection<Pledge> Pledges { get; set; } = new List<Pledge>();
     }
 }

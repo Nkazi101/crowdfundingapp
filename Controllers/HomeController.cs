@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Crowdfunding.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Crowdfunding.Controllers;
 
+[Authorize(Policy = "RequireProjectCreatorRole")]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;

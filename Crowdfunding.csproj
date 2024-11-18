@@ -12,11 +12,15 @@
     <None Remove="Enums\" />
     <None Remove="Data\" />
     <None Remove="Migrations\" />
+    <None Remove="Seeders\" />
+    <None Remove="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
     <Folder Include="Data\" />
     <Folder Include="Migrations\" />
+    <Folder Include="Seeders\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0" />

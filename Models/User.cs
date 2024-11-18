@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Crowdfunding.Enums;
 using Crowdfunding.Models;
 using Microsoft.AspNetCore.Identity;
 
@@ -9,6 +10,19 @@ namespace Crowdfunding.Models
 {
     public class User : IdentityUser<Guid>
     {
+
+
+        public User()
+        {
+            Bio = string.Empty;
+            ProfilePictureUrl = string.Empty;
+            Projects = new List<Project>();
+            Pledges = new List<Pledge>();
+            SentMessages = new List<Message>();
+            ReceivedMessages = new List<Message>();
+        }
+
+
         //[Key]
         //public Guid UserID { get; set; } = Guid.NewGuid();
 
@@ -26,7 +40,7 @@ namespace Crowdfunding.Models
 
         [Required]
         [MaxLength(20)]
-        public string Role { get; set; } // Possible values: "Backer", "ProjectCreator", "Admin"
+        public UserRole Role { get; set; } // Possible values: "Backer", "ProjectCreator", "Admin"
 
         [Url]
         public string ProfilePictureUrl { get; set; }
@@ -39,12 +53,12 @@ namespace Crowdfunding.Models
         public bool IsActive { get; set; } = true;
 
         // Navigation properties
-        public ICollection<Project> Projects { get; set; } // Projects created by the user
+        public ICollection<Project> Projects { get; set; } 
 
-        public ICollection<Pledge> Pledges { get; set; } // Pledges made by the user
+        public ICollection<Pledge> Pledges { get; set; } 
 
-        public ICollection<Message> SentMessages { get; set; } // Messages sent by the user
+        public ICollection<Message> SentMessages { get; set; } 
 
-        public ICollection<Message> ReceivedMessages { get; set; } // Messages received by the user
+        public ICollection<Message> ReceivedMessages { get; set; }
     }
 }

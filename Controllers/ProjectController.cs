@@ -20,8 +20,33 @@ namespace Crowdfunding.Controllers
         }
 
         // GET: Project
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string category, string sortOrder)
         {
+            //using viewdata to maintain the current filter and sort order
+            //view data stores data in key value pairs
+            //view data can pass data between controller and view, and also between views
+            ViewData["CurrentCategory"] = category;
+            ViewData["CurrentSort"] = sortOrder;
+
+            var projects = _context.Projects
+                .Include(p => p.Pledges)
+                .AsQueryable();
+
+
+            switch (sortOrder)
+            {
+                case "popular":
+                    projects = projects.OrderByDescending(p => p.Pledges.Count);
+                    break;
+                case "recent":
+                    projects = projects.OrderByDescending(p => p.DateCreated);
+                    break;
+                default:
+                    projects = projects.OrderBy(p => p.Title);
+                    break;
+
+            }
+
             var crowdFundingDBContext = _context.Projects.Include(p => p.Creator);
             return View(await crowdFundingDBContext.ToListAsync());
         }

@@ -20,7 +20,6 @@ namespace Crowdfunding.Services
 
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            // Retrieve SMTP settings from configuration
             var smtpHost = _configuration["Smtp:Host"];
             var smtpPort = int.Parse(_configuration["Smtp:Port"]);
             var smtpUser = _configuration["Smtp:Username"];
@@ -29,7 +28,7 @@ namespace Crowdfunding.Services
 
             using (var client = new SmtpClient(smtpHost, smtpPort))
             {
-                client.EnableSsl = true;
+                client.EnableSsl = true; // Use SSL for secure connection
                 client.Credentials = new NetworkCredential(smtpUser, smtpPass);
 
                 var mailMessage = new MailMessage
@@ -49,7 +48,6 @@ namespace Crowdfunding.Services
                 catch (Exception ex)
                 {
                     _logger.LogError($"Error sending email to {email}: {ex.Message}");
-                    // Optionally, rethrow or handle the exception as needed
                 }
             }
         }

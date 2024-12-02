@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Crowdfunding.Models;
+
 
 namespace Crowdfunding.Models
 {
@@ -11,6 +11,7 @@ namespace Crowdfunding.Models
         [Key]
         public Guid ProjectID { get; set; } = Guid.NewGuid();
 
+        //many to one
         [Required]
         public Guid CreatorID { get; set; }
 

@@ -36,7 +36,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
     options.User.RequireUniqueEmail = true;
 
-    options.SignIn.RequireConfirmedEmail = true; // Require email confirmation
+    options.SignIn.RequireConfirmedEmail = false; // Require email confirmation
 
 });
 

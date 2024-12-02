@@ -1,0 +1,77 @@
+@model IEnumerable<Crowdfunding.Models.Reward>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" asp-route-projectId ="@ViewBag.ProjectID">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Project)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PledgeAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuantityClaimed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimatedDelivery)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsLimited)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PledgeAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityClaimed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstimatedDelivery)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsLimited)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RewardID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RewardID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RewardID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

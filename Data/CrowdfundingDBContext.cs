@@ -103,7 +103,7 @@ namespace Crowdfunding.Data
             modelBuilder.Entity<Project>()
                 .HasMany(p => p.Rewards)        // Navigation property in Project (Project.Rewards)
                 .WithOne(r => r.Project)        // Navigation property in Reward (Reward.Project)
-                .HasForeignKey(r => r.ProjectID); // Foreign key in Reward pointing to Project
+                .HasForeignKey(r => r.ProjectID);// Foreign key in Reward pointing to Project
 
             // Define the one-to-many relationship between Project and Pledge.
             // A Project can have many Pledges, but a Pledge belongs to one Project.

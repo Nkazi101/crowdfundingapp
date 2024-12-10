@@ -1,0 +1,31 @@
+﻿@model Crowdfunding.DTO.PledgeViewModel
+
+@{
+    ViewData["Title"] = "Pledge to " + Model.ProjectTitle;
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-action="Pledge" method="post">
+
+
+    <div>
+        <label asp-for="Amount">Amount</label>
+        <input asp-for="Amount" />
+        <span asp-validation-for="Amount"></span>
+    </div>
+
+    <div>
+        <label>Select a reward Tier</label>
+        <select asp-for="RewardID" asp-items="@(new SelectList(Model.Rewards,"RewardID", "Title"))">
+            <option>No Rewards</option>
+        </select>
+    </div>
+
+    <button type="submit">Proceed to Payment</button>
+
+
+
+
+</form>

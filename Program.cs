@@ -1,3 +1,4 @@
+using Crowdfunding.Config;
 using Crowdfunding.Data;
 using Crowdfunding.Enums;
 using Crowdfunding.Models;
@@ -5,6 +6,7 @@ using Crowdfunding.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,11 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 builder.Services.AddDbContext<CrowdFundingDBContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CrowdfundingDB")));
 
+//stripe
+builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+
+//set the stripe api key
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe")["SecretKey"];
 
 //builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<CrowdFundingDBContext>();
 

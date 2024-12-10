@@ -12,18 +12,44 @@
 
 <form method="get" asp-action="Index">
     <div>
-        <label>Category: </label>\
-        <select>
-            <option>All</option>
+
+        <label>Search Projects</label>
+        <input type="text" name="searchString" value="@ViewData["CurrentSearch"]" placeholder="Search Projects..." />
+
+        <label for="category">Category: </label>\
+        <select name="category" onchange="this.form.submit()">
+
+            <option value="">All</option>
+            @foreach (var cat in ViewBag.Categories as List<string>)
+            {
+                <option value="@cat" selected="@(cat == ViewData["CurrentCategory"]?.ToString() ? "selected" : null)">@cat</option>
+
+            }
         </select>
 
-        <label>Sort By: </label>\
-        <select>
-            <option>Title</option>
-            <option></option>
-            <option></option>
+        <label for="sortOrder">Sort By: </label>\
+        <select name="sortOrder" onchange="this.form.submit()">
+            <option value="">Title</option>
+            <option value="popular" selected="@(ViewData["CurrentSort"]?.ToString() == "popular" ? "selected" : null)">Most Popular</option>
+            <option value="recent" selected="@(ViewData["CurrentSort"]?.ToString() == "recent" ? "selected" : null)">Recent</option>
         </select>
+
+
+        <label for="fundingStatus">Funding Status: </label>
+        <select name="fundingStatus" onchange="this.form.submit()">
+            <option value="">All</option>
+            <option value="Funded" selected="@(ViewData["CurrentFundingStatus"]?.ToString() == "Funded" ? "selected" : null)">Funded</option>
+            <option value="Unfunded" selected="@(ViewData["CurrentFundingStatus"]?.ToString() == "Unfunded" ? "selected" : null)">Un-Funded</option>
+        </select>
+
     </div>
+
+
+
+
+
+
+
 </form>
 
 <table class="table">

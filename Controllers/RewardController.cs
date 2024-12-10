@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Linq; // LINQ namespace
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore; // Entity Framework Core namespace
 using Crowdfunding.Data;
 using Crowdfunding.Models;
 
@@ -22,26 +22,23 @@ namespace Crowdfunding.Controllers
         // GET: Reward/ProjectID
         public async Task<IActionResult> Index(Guid? projectId)
         {
-
             if (projectId == null)
             {
                 return BadRequest("Project is required");
             }
 
-            //select * from reward where id = "projectid"
+            // LINQ query to select rewards where ProjectID matches the provided projectId.
             var rewards = await _context.Rewards
-                .Where(r => r.ProjectID == projectId)
-                .Include(r => r.Project)
-                .ToListAsync();
+                .Where(r => r.ProjectID == projectId) // Filters rewards by ProjectID.
+                .Include(r => r.Project) // Eagerly loads the related Project entity.
+                .ToListAsync(); // Executes the query asynchronously and returns a list.
 
+            // Fetch the project to get its Title.
             var project = await _context.Projects.FindAsync(projectId);
             ViewBag.ProjectTitle = project?.Title ?? "Unknown Project";
             ViewBag.ProjectID = projectId;
 
             return View(rewards);
-
-            //var crowdFundingDBContext = _context.Rewards.Include(r => r.ProjectID);
-            //return View(await crowdFundingDBContext.ToListAsync());
         }
 
         // GET: Reward/Details/5
@@ -52,9 +49,11 @@ namespace Crowdfunding.Controllers
                 return NotFound();
             }
 
+            // LINQ query to find the reward by RewardID and include the related Project.
             var reward = await _context.Rewards
-                .Include(r => r.Project)
-                .FirstOrDefaultAsync(m => m.RewardID == id);
+                .Include(r => r.Project) // Eagerly loads the Project related to the reward.
+                .FirstOrDefaultAsync(m => m.RewardID == id); // Gets the first reward matching the ID.
+
             if (reward == null)
             {
                 return NotFound();
@@ -66,39 +65,29 @@ namespace Crowdfunding.Controllers
         // GET: Reward/Create
         public IActionResult Create(Guid? projectId)
         {
-
-            if(projectId == null)
+            if (projectId == null)
             {
-
                 return BadRequest("Project ID is required to add Rewards");
             }
 
-            var reward = new Reward { ProjectID = projectId.Value};
+            var reward = new Reward { ProjectID = projectId.Value };
 
+            // Creates a SelectList for the Projects dropdown, if needed.
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ProjectID", "Category");
             return View();
         }
 
         // POST: Reward/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("RewardID,ProjectID,Title,Description,PledgeAmount,QuantityAvailable,QuantityClaimed,EstimatedDelivery,IsLimited")] Reward reward)
         {
-            //if (ModelState.IsValid)
-            //{
-
-
-            //Inserting into the reward table 
-                reward.RewardID = Guid.NewGuid();
-                _context.Add(reward);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), new {projectId = reward.ProjectID});
+            // Generate a new GUID for the RewardID.
+            reward.RewardID = Guid.NewGuid();
+            _context.Add(reward); // Adds the new reward to the context.
+            await _context.SaveChangesAsync(); // Saves changes to the database asynchronously.
+            return RedirectToAction(nameof(Index), new { projectId = reward.ProjectID });
         }
-        //    ViewData["ProjectID"] = new SelectList(_context.Projects, "ProjectID", "Category", reward.ProjectID);
-        //    return View(reward);
-        //}
 
         // GET: Reward/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
@@ -108,18 +97,19 @@ namespace Crowdfunding.Controllers
                 return NotFound();
             }
 
+            // Finds the reward by RewardID.
             var reward = await _context.Rewards.FindAsync(id);
             if (reward == null)
             {
                 return NotFound();
             }
+
+            // Prepares the Projects SelectList for the view.
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ProjectID", "Category", reward.ProjectID);
             return View(reward);
         }
 
         // POST: Reward/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("RewardID,ProjectID,Title,Description,PledgeAmount,QuantityAvailable,QuantityClaimed,EstimatedDelivery,IsLimited")] Reward reward)
@@ -133,8 +123,8 @@ namespace Crowdfunding.Controllers
             {
                 try
                 {
-                    _context.Update(reward);
-                    await _context.SaveChangesAsync();
+                    _context.Update(reward); // Updates the reward in the context.
+                    await _context.SaveChangesAsync(); // Saves changes to the database.
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -144,11 +134,12 @@ namespace Crowdfunding.Controllers
                     }
                     else
                     {
-                        throw;
+                        throw; // Re-throws the exception if not due to reward not existing.
                     }
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             ViewData["ProjectID"] = new SelectList(_context.Projects, "ProjectID", "Category", reward.ProjectID);
             return View(reward);
         }
@@ -161,9 +152,11 @@ namespace Crowdfunding.Controllers
                 return NotFound();
             }
 
+            // LINQ query to find the reward and include the related Project.
             var reward = await _context.Rewards
-                .Include(r => r.Project)
-                .FirstOrDefaultAsync(m => m.RewardID == id);
+                .Include(r => r.Project) // Includes the Project related to the reward.
+                .FirstOrDefaultAsync(m => m.RewardID == id); // Gets the first reward matching the ID.
+
             if (reward == null)
             {
                 return NotFound();
@@ -179,21 +172,24 @@ namespace Crowdfunding.Controllers
         {
             if (_context.Rewards == null)
             {
-                return Problem("Entity set 'CrowdFundingDBContext.Rewards'  is null.");
+                return Problem("Entity set 'CrowdFundingDBContext.Rewards' is null.");
             }
+
+            // Finds the reward by RewardID.
             var reward = await _context.Rewards.FindAsync(id);
             if (reward != null)
             {
-                _context.Rewards.Remove(reward);
+                _context.Rewards.Remove(reward); // Removes the reward from the context.
             }
-            
-            await _context.SaveChangesAsync();
+
+            await _context.SaveChangesAsync(); // Saves changes to the database.
             return RedirectToAction(nameof(Index));
         }
 
         private bool RewardExists(Guid id)
         {
-          return (_context.Rewards?.Any(e => e.RewardID == id)).GetValueOrDefault();
+            // Checks if any reward exists with the given ID using LINQ Any method.
+            return (_context.Rewards?.Any(e => e.RewardID == id)).GetValueOrDefault();
         }
     }
 }

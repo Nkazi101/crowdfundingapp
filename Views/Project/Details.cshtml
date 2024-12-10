@@ -7,6 +7,10 @@
 <h1>Details</h1>
 
 <div>
+
+    <p>Number of Backers: @ViewBag.BackerCount</p>
+
+
     <h4>Project</h4>
     <hr />
     <dl class="row">
@@ -85,6 +89,7 @@
     </dl>
 </div>
 <div>
+    <a asp-controller="Pledge" asp-action="Index" asp-route-projectId="@Model.ProjectID">Add Pledge</a>
     <a asp-action="Edit" asp-route-id="@Model?.ProjectID">Edit</a> |
     <a asp-action="Index">Back to List</a>
 </div>

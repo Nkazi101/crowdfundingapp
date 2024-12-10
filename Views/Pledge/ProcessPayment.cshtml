@@ -1,0 +1,32 @@
+﻿@model Crowdfunding.DTO.PaymentViewModel
+@{ViewData["Title"] = "Complete Payment";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form>
+
+    <button id="submit">Pay @Model.Amount.ToString()</button>
+</form>
+
+@section Scripts {
+
+    <script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('@Model.PublicKey');
+    var elements = stripe.elements();
+    var card = elements.create('card');
+    card.mount('#card-element');
+
+    const form = document.getElementById('payment-form');
+    var secretekey = document.getElementById('client-secret').value;
+
+
+</script>
+
+
+
+
+
+
+}

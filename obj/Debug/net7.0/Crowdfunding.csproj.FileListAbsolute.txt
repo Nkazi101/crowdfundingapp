@@ -247,11 +247,6 @@
 /Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
 /Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
 /Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
-/Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
-/Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
-/Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
-/Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
-/Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 /Users/nkazi/Projects/Crowdfunding/Crowdfunding/obj/Debug/net7.0/Crowdfunding.csproj.AssemblyReference.cache
 /Users/nkazi/Projects/Crowdfunding/Crowdfunding/obj/Debug/net7.0/Crowdfunding.GeneratedMSBuildEditorConfig.editorconfig
 /Users/nkazi/Projects/Crowdfunding/Crowdfunding/obj/Debug/net7.0/Crowdfunding.AssemblyInfoInputs.cache
@@ -308,3 +303,8 @@
 /Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win-x86/native/e_sqlite3.dll
 /Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
 /Users/nkazi/Projects/Crowdfunding/Crowdfunding/obj/Debug/net7.0/Crowdfunding.csproj.CopyComplete
+/Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/Stripe.net.dll
+/Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win/lib/net7.0/Microsoft.Win32.SystemEvents.dll
+/Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
+/Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
+/Users/nkazi/Projects/Crowdfunding/Crowdfunding/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll

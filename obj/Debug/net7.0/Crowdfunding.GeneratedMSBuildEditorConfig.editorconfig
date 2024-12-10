@@ -68,6 +68,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Pledge/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGxlZGdlL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Pledge/ProcessPayment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGxlZGdlL1Byb2Nlc3NQYXltZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Project/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdC9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

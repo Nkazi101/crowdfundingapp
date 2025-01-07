@@ -1,0 +1,19 @@
+﻿@model Message
+
+<h1>New Message</h1>
+
+<form asp-action="Create" method="post">
+
+    <div>
+        <label>Select a Receiver</label>
+        <select asp-for="ReceiverID" asp-items="@(new SelectList(ViewBag.Receivers,"Id", "UserName", Model.ReceiverID))">
+            <option value="">--Select A User--</option>
+        </select>
+    </div>
+
+    <div>
+        <label asp-for="Content"></label>
+        <textarea asp-for="Content"></textarea>
+    </div>
+    <button type="submit">Send</button>
+</form>

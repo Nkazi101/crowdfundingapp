@@ -4,25 +4,59 @@
 
 <h1>@ViewData["Title"]</h1>
 
-<form>
-
-    <button id="submit">Pay @Model.Amount.ToString()</button>
+<form id="payment-form" asp-action="ProcessPayment" asp-controller="Pledge" method="post">
+    <input type="hidden" id="client-secret" value="@Model.SecretKey" />
+    <input type="hidden" id="payment-intent-id" name="paymentIntentId" />
+    <div id="card-element"><!--Stripe.js injects the Card Element--></div>
+    <div id="card-errors" role="alert"></div>
+    <button id="submit">Pay @Model.Amount.ToString("C")</button>
 </form>
 
 @section Scripts {
 
     <script src="https://js.stripe.com/v3/"></script>
-<script>
+    <script>
     var stripe = Stripe('@Model.PublicKey');
     var elements = stripe.elements();
     var card = elements.create('card');
     card.mount('#card-element');
 
     const form = document.getElementById('payment-form');
-    var secretekey = document.getElementById('client-secret').value;
+    var clientSecret = document.getElementById('client-secret').value;
+
+              form.addEventListener('submit', function (ev) {
+            ev.preventDefault();
+
+            fetch('@Url.Action("CreatePaymentIntent", "Pledge")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.getElementsByName("__RequestVerificationToken")[0].value
+                },
+                body: JSON.stringify({ amount: @Model.Amount, projectId: '@Model.ProjectID', rewardId: '@Model.RewardID' }) 
+            })
+            .then(response => response.json())
+            .then(data => {
+                stripe.confirmCardPayment(data.clientSecret, {
+                    payment_method: {
+                        card: card
+                    }
+                }).then(function (result) {
+                    if (result.error) {
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        if (result.paymentIntent.status === 'succeeded') {
+                            document.getElementById('payment-intent-id').value = data.paymentIntentId;
+                            form.submit();
+                        }
+                    }
+                });
+            });
+        });
 
 
-</script>
+    </script>
 
 
 

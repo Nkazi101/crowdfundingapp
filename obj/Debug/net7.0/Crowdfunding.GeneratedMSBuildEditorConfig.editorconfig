@@ -60,6 +60,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Dashboard/Backer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0JhY2tlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Dashboard/Creator.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRGFzaGJvYXJkL0NyZWF0b3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -68,8 +76,28 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Messages/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVzc2FnZXMvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Messages/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVzc2FnZXMvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Messages/Inbox.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVzc2FnZXMvSW5ib3guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Messages/Outbox.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVzc2FnZXMvT3V0Ym94LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Pledge/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGxlZGdlL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Pledge/PaymentSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGxlZGdlL1BheW1lbnRTdWNjZXNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/nkazi/Projects/Crowdfunding/Crowdfunding/Views/Pledge/ProcessPayment.cshtml]

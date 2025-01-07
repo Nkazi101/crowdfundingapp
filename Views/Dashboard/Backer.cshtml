@@ -1,0 +1,28 @@
+﻿@model List<Pledge>
+
+
+<h1>My Pledges</h1>
+
+<div>
+
+ 
+
+        @foreach (var pledge in Model)
+{
+
+                <div>
+
+                    <p>@pledge.Project.Title</p>
+                    <p>@pledge.PledgeAmount.ToString("C")</p>
+                    <p>@(pledge.Reward != null ? pledge.Reward.Title:"No Reward")</p>
+                    <p>@pledge.PledgeDate.ToShortDateString()</p>
+
+                </div>
+
+
+
+}
+
+
+
+</div>

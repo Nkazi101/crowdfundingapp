@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using Crowdfunding.DTO;
 
 namespace Crowdfunding.Models
 {
@@ -54,5 +54,7 @@ namespace Crowdfunding.Models
         public ICollection<Reward> Rewards { get; set; } = new List<Reward>();
 
         public ICollection<Pledge> Pledges { get; set; } = new List<Pledge>();
+
+        public ICollection<ProjectUpdate> Updates { get; set; } = new List<ProjectUpdate>();
     }
 }

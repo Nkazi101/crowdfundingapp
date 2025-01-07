@@ -17,6 +17,8 @@ namespace Crowdfunding.Models
         public Project Project { get; set; }
 
 
+
+
         [Required]
         public Guid BackerID { get; set; }
 
@@ -27,6 +29,8 @@ namespace Crowdfunding.Models
 
         [ForeignKey("RewardID")]
         public Reward Reward { get; set; }
+
+        public string PaymentIntentID { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]

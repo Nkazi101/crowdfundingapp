@@ -10,6 +10,7 @@ using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddEnvironmentVariables();
 
 builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
 
@@ -19,6 +20,8 @@ builder.Services.AddDbContext<CrowdFundingDBContext>(options =>
 
 //stripe
 builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
+
+
 
 //set the stripe api key
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe")["SecretKey"];
@@ -66,6 +69,8 @@ builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+
 
 var app = builder.Build();
 

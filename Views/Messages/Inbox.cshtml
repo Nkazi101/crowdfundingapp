@@ -1,0 +1,41 @@
+﻿@model List<Message>
+
+
+
+<a asp-action="Create" method="get">New Message</a>
+
+
+<h1>Inbox</h1>
+
+
+@foreach (var msg in Model) {
+
+
+
+        <div>
+            <strong>From:</strong> @msg.Sender.UserName <br />
+            <strong>Date:</strong> @msg.SentDate <br />
+            <strong>Subject:</strong>
+            <a asp-action="Details" asp-route-id="@msg.MessageID">@msg.Content.Substring(0, Math.Min(30, msg.Content.Length))</a>
+
+
+        </div>
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

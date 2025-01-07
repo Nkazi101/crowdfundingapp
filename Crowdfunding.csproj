@@ -17,6 +17,8 @@
     <None Remove="DTO\" />
     <None Remove="Views\Pledge\" />
     <None Remove="Config\" />
+    <None Remove="Views\Dashboard\" />
+    <None Remove="Views\Messages\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Enums\" />
@@ -27,6 +29,8 @@
     <Folder Include="DTO\" />
     <Folder Include="Views\Pledge\" />
     <Folder Include="Config\" />
+    <Folder Include="Views\Dashboard\" />
+    <Folder Include="Views\Messages\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20" />

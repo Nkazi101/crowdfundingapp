@@ -1,0 +1,37 @@
+﻿@model List<Project>
+
+
+<h1>My Projects</h1>
+
+
+
+@foreach (var project in Model)
+{
+
+        <h2>@project.Title</h2>
+        <p>Funding: @project.CurrentFunding.ToString("C") / @project.FundingGoal.ToString("C")</p>
+        <p>Backers: @project.Pledges.Select(p => p.BackerID).Distinct().Count()</p>
+
+        <div>
+            <h3>Post an update</h3>
+            <form asp-action="PostUpdate" method="post">
+                <input type="hidden" name="ProjectID" value="@project.ProjectID" />
+                <textarea name="Content" placeholder="write your update..."></textarea>
+                <button type="submit">Post Update</button>
+            </form>
+        </div>
+
+
+        <h3>Recent Updates</h3>
+
+        @foreach (var update in project.Updates.OrderByDescending(u => u.DatePosted))
+{
+                <div>
+                    <small>@update.DatePosted.ToShortDateString()</small>
+                    <p>@update.Content</p>
+                </div>
+
+                
+}
+
+}
